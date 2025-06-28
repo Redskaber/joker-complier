@@ -1,0 +1,59 @@
+
+//! This file is used to test Self-language features.
+//! test: base type
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+
+// Vector 
+
+// single type
+var arr:Vec<i32> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+println("arr: %s", arr);
+for (var i:i32 = 0; i < arr.len(); i = i + 1) {
+    println("arr[%d]: %d", i, arr[i]);
+}
+
+// any type
+var any:Vec<Any> = [
+    1, 
+    "2", 
+    true, 
+    3.14, 
+    [1, 2, 3], 
+];
+println("any: %s", any);
+for(var i:i32 = 0; i < any.len(); i = i + 1) {
+    println("any[%d]: %s", i, any[i]);
+}
+
+// push
+arr.push(11);
+println("arr: %s", arr);
+for(var i:i32 = 0; i < arr.len(); i = i + 1) {      // 显示的incre => rust
+    print("%d ", arr[i]);
+}
+println("");
+
+// pop
+arr.pop();
+
+// print
+println("arr: %s", arr);
+for(var i:i32 = 0; i < arr.len(); i = i + 1) {
+    print("%d ", arr[i]);
+}
+println("");
+
+// getter/setter
+println("arr: %d", arr.get(0));  // arr[0]
+arr.set(0, 100)                  // arr[0] = 100 
+println("arr: %d", arr.get(0));
+
+

@@ -1,0 +1,39 @@
+//! This file is used test Joker Language features.
+
+
+fn test_in_fn_create_class() -> None {
+    class Test {
+        fn init(test: i32) -> None {
+            self.test = test;
+        }
+    }
+    var test: Test = Test(10);
+    println("test: %d", test.test);
+}
+
+test_in_fn_create_class();
+
+
+fn test_in_fn_create_class_return(test: i32) -> Test {
+    class Test {
+        fn init(test: i32) -> None {
+            self.test = test;
+        }
+    }
+    return Test(test);
+}
+
+var test: Test = test_in_fn_create_class_return(10);
+println("test: %d", test.test);
+
+
+fn closure_fn() -> Fn {
+
+    fn test_closure() -> None {
+        println("test closure");
+    }
+
+    return test_closure;
+}
+var closure: Fn = closure_fn();
+closure();

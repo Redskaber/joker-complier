@@ -1,0 +1,140 @@
+/*
+class A {
+    fn a(text) {
+        print("A says:" + text);
+    }
+}
+
+class B(A) {
+}
+
+B().a("hello world!");  // prints "A says: hello world!"
+*/
+
+/*
+class A {
+    fn a() {
+        self.b();
+    }
+
+    fn b() {
+        println("A");
+    }
+}
+
+A().a();    // prints "A"
+*/
+
+
+/*
+class Doughnut {
+    fn cook() {
+        println("Dunk in the fryer.");
+        self.finish("sprinkles");
+    }
+
+    fn finish(ingredient) {
+        println("Finish with " + ingredient);
+    }
+}
+
+Doughnut().cook();      // prints "Dunk in the fryer. Finish with sprinkles"
+
+class Cruller(Doughnut) {
+    fn finish(ingredient) {
+        super.finish("icing");
+    }
+}
+
+Cruller().cook();      // prints "Dunk in the fryer. Finish with icing"
+*/
+
+/*
+class A {
+    fn method() {
+        println("A");
+    }
+}
+
+class B(A) {
+    fn method() {
+        // var closure = super.method;
+        // closure();       // prints "A"
+        // TODO: this should work, but doesn't
+        super.method();
+    }
+}
+
+B().method();
+ */
+
+
+fn done_something() {
+    var sum = 0;
+    for(var i = 1; i < 1000000; i = i +1) {
+        sum = sum + i;
+    }
+        
+    var sum_label = (sum == 499999500);
+    if (sum_label == true) {
+        println("success");
+    } else {
+        println("failure");
+    }
+
+    println("done");
+
+    return null;
+}
+
+
+class Animal {
+    fn init(name: str, age: i32) {
+        self.name = name;
+        self.age = age;
+    }
+    
+    fn make_sound() {
+        println("generic animal sound");
+    }
+    
+    fn desc() {
+        println("animal name: %s, age: %d", self.name, self.age);
+    }
+}
+
+class Person: Animal {
+    fn make_sound() {
+        println("human sound");
+        super.make_sound();
+        println("human sound 2");
+    }
+}
+
+
+fn sum(a: i32, b: i32) -> i32 {
+    return a + b;
+}
+
+
+// feb(n) = fib(n-1) + fib(n-2)
+fn feb_test(n: i32) -> i32 {
+    if (n == 1) {
+        return 1;
+    }
+    if (n == 2) {
+        return 1;
+    }
+    return feb_test(n-1) + feb_test(n-2);
+}
+
+
+fn main() -> None {
+    var start_clock: f64 = clock();
+    var re: i32 = feb_test(38);
+    println("feb_test: %d", re);
+    println("time: %f", clock() - start_clock);
+    return None;
+}
+
+main();

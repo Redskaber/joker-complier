@@ -1,0 +1,33 @@
+//! This file is joker-language code.
+//! used for testing.
+
+// struct Demo
+struct Demo{}
+
+/// struct Person
+struct Person {
+    name: str, 
+    age: i32
+}
+
+/// struct Student
+struct Student: Person {
+    school: str
+}
+
+
+fn test_struct() -> None {
+    var person: Person = Person("John", 22);
+    var student: Student = Student("John", 22, "School");
+
+    println("Person {name: %s, age: %d}", person.name, person.age);
+    println("Student {name: %s, age: %d, school: %s}", student.name, student.age, student.school);
+
+    return None;
+}
+
+fn main() {
+    test_struct();
+}
+
+main();

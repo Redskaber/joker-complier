@@ -1,0 +1,77 @@
+
+//! This file is used to test Self-language features.
+//! test: class_decl
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+
+/// class_decl     → "class" IDENTIFIER (":" IDENTIFIER)? "{"
+///                   (class_decl | struct_decl | fn_decl | var_decl)*
+///                  "}"
+
+
+
+
+class Empty{}
+
+class Person {
+    // inner
+    class meta {
+        fn desc() {
+            println("This is a person meta!");
+        }
+    }
+    // enum Gender {
+    //     MALE,
+    //     FEMALE,
+    // }
+    struct something {
+        something: str;
+    }
+    // entry
+    fn init(name: str, age: i32) -> Person {
+        // init
+        self.name = name;
+        self.age = age;
+    }
+    fn info() {
+        println("Person(name: %s, age: %s)", self.name, self.age);
+    }
+    // static method
+    fn desc() {
+        println("This is a person!"); // not self 
+    }
+}
+
+var p = Person("redskaber", 23);
+p.info();
+Person::desc(); // 静态方法可以通过::访问
+// Person::meta::desc(); 
+// println("Person::Gender::MALE: %s", Person::Gender::MALE);
+
+
+// 只允许单继承
+class Student: Person {
+    fn init(name: str, age: i32, school: str) -> Student {
+        super.init(name, age);
+        self.school = school;
+    }
+    fn info() {
+        println("Student(name: %s, age: %d, school: %s)", self.name, self.age, self.school);
+    }
+    fn desc() {
+        super.desc();
+        println("This is a student!");
+    }
+}
+
+var s = Student("redskaber", 23, "Hogwarts"); // 同样按照顺序初始化
+s.info();
+Student::desc();
+

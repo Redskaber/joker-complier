@@ -1,0 +1,113 @@
+//! This file is joker language code, used enum type.
+class TestEnum {
+    /* literal: i32, f32, string, bool */
+    fn test_enum_match_literal() -> None {
+        println("test_enum_match_literal start");
+        var a: i32 = 1;
+        var b: f32 = 1.0;
+        var c: str = "hello";
+        var d: bool = true;
+
+        match a {
+            1 => println("a is 1"),
+            2 => println("a is 2"),
+            _ => println("a is other")
+        }
+
+        match b {
+            1.0 => println("b is 1.0"),
+            2.0 => println("b is 2.0"),
+        }
+
+        match c {
+            "hello" => println("c is hello"),
+            "world" => println("c is world"),
+        }
+
+        match d {
+            true => println("d is true"),
+            false => println("d is false"),
+        }
+        println("test_enum_match_literal end");
+    }
+
+    /* enum */
+    fn test_enum_match_enum() -> None {
+        println("test_enum_match_enum start");
+        enum Color {
+            Red,
+            Green,
+            Blue,
+        }
+
+        var color: Color = Color::Red;
+
+        match color {
+            Color::Red => println("color is Red"),
+            Color::Green => println("color is Green"),
+            Color::Blue => println("color isBlue"),
+        }
+        println("test_enum_match_enum end");
+    }
+
+    /*enum store */
+    fn test_enum_store() -> None {
+        println("test_enum_store start");
+        struct Rv{value: i32}
+        struct Bv{value: i32}
+        struct Gv{value: i32}
+
+        enum Color {
+            Red(Rv),
+            Blue(Bv),
+            Green(Gv),
+        }
+        
+
+        var color: Color = Color::Red(Rv(100));
+        var color2: Color = Color::Green(Gv(200));
+
+        match color {
+            Color::Red(rv) => match color2 {
+                Color::Green(gv) => 
+                    println("color is Red, %d, color2 is Green, %d", rv.value, gv.value),
+                _ => 
+                    println("color is Red, %d, color2 is other", rv.value),
+            },
+            Color::Green(gv) => println("color is Green, %d", gv.value),
+            Color::Blue(bv) => println("color isBlue, %d", bv.value),
+        }
+        println("test_enum_store end");
+    }
+
+    // TODO: wait handle definition
+    fn test_enum_store_match_enum() -> None {
+        println("test_enum_store_match_enum start");
+        enum Color {
+            Red(i32),
+            Green(i32),
+            Blue(i32),
+        }
+
+        var color:Color = Color::Red(100);
+        
+        match color {
+            Color::Red(rv) => println("color is Red, %d", rv),
+            Color::Green(gv) => println("color is Green, %d", gv),
+            Color::Blue(bv) => println("color isBlue, %d", bv),
+        }
+    }
+}
+
+
+fn main() -> None {
+    var test_enum: TestEnum = TestEnum();
+    test_enum.test_enum_match_literal();
+    test_enum.test_enum_match_enum();
+    test_enum.test_enum_store();
+    // test_enum.test_enum_store_match_enum();
+    var arr:Vec<i32> = [1, 2, 3, 4, 5];
+    var a: i32 = 100;
+}
+
+main();

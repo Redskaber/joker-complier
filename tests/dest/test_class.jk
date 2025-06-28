@@ -1,0 +1,57 @@
+/*
+class Nested {
+    method() {
+        fn func() {
+            print self;
+        }
+
+        func();
+    }
+}
+
+var n = Nested(100);
+n.method();
+*/
+
+/*
+// Error: self not in class scope
+print self;
+*/
+
+/*
+class CoffeeMaker {
+    init(coffee) {
+        self.coffee = coffee;
+    }
+
+    brew() {
+        print "Enjoy your cup of " + self.coffee;
+
+        // TODO: No reusing the grounds!
+        self.coffee = null;
+    }
+}
+
+var maker = CoffeeMaker("coffee and chicory");
+print maker.coffee;
+maker.brew();
+*/
+
+// Error: undefined coffee
+// print maker.coffee;
+
+
+class CoffeeMaker {
+    fn init(coffee: str) {
+        self.coffee = coffee;
+    }
+
+    fn brew() -> None {
+        println("%s", "Enjoy your cup of " + self.coffee);
+    }
+}
+
+var maker = CoffeeMaker("coffee and chicory");
+println("%s", maker.coffee);
+maker.brew();
+println("%s", maker.coffee);

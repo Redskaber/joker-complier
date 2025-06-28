@@ -1,0 +1,11 @@
+//! This is a package comment
+/// This is a file comment
+
+// This is a line comment
+
+/**
+ * This is a block comment
+ */
+
+/* This is a block comment */
+

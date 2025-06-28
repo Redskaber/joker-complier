@@ -1,0 +1,14 @@
+//! This file is test joker code building on top of the jk_array module
+
+
+fn test_build_array() {
+    var a: [5; i 32] = [1, 2, 3, 4, 5];
+    var a: [5; i32] = [1];
+    var a: Range<i32> = 1..100;
+    var a: Array<i32> = Array::new();
+
+    for (var i in a) {}
+    for (var i in 1..100) {}
+
+    print a;
+}

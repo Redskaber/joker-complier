@@ -1,0 +1,164 @@
+/*
+// test: normal call function
+fn main() {
+	print "hello, world!";
+}
+
+main();
+
+
+// test: heap stack trace
+fn a() { b(); }
+fn b() { c(); }
+fn c() { c("too", "many"); }
+
+a();
+
+
+
+// test: non-return 
+fn no_return() {
+	print "do stuff";		// current function current default non-return value, default null-value.
+}
+
+
+// no_return();		// print "do stuff"
+
+print no_return();	// error: current function not find return value,
+
+
+return;				// test: top-level code don't used return keyworld.
+
+
+//////////////////////////////////////////////////////////////////
+fn has_return_func(a, b) {
+	return a + b;
+}
+
+
+fn main() {
+	var a = 100;
+	var b = 200;
+	var c = has_return_func(a, b);
+	print c;
+
+	// test: closure function
+	fn sum(a, b) {
+		return a + b;
+	}
+
+	print sum(10,1000);
+}
+
+main();
+
+
+fn fib(n) {
+  if (n < 2) return n;
+  return fib(n - 2) + fib(n - 1);
+}
+
+var start = clock();
+print fib(35);
+print clock() - start;
+/////////////////////////////////////////////
+fn cmp(a, b) {
+	while( a > b) {
+		if( a == b ) break;
+		a = a - 1;
+		print a;
+	}
+	print a;
+	print b;
+}
+
+cmp(10, 5);
+
+///////////////////////////////////////////////
+// Comment: colsure
+var x = "global";
+
+fn outer() {
+	var x = "local";
+
+	fn local() {
+		print(x);
+	}
+
+	local();
+}
+
+outer();
+/////////////////////////////////////////////
+fn outer() {
+	var a = 1;
+	var b = 2;
+
+	fn middle() {
+		var c = 3;
+		var d = 4;
+
+		fn inner() {
+			print a + b + c + d;
+		}
+	}
+}
+/////////////////////////////////////////////
+fn outer() {
+	var x = "outside";
+	fn inner() {
+		print x;
+	}
+	inner();
+}
+
+outer();
+/////////////////////////////////////////////
+fn inner(a) {
+    fn inner() {
+        return a;
+    }
+    return inner;
+}
+
+fn maker_closure() {
+    fn in(a) {
+        return inner(a);
+    }
+    return in;
+}
+
+var f = maker_closure();
+print f(100)();
+/////////////////////////////////////////////
+*/
+
+type InnerFn = Fn() -> i32;
+
+fn inner(a) -> InnerFn {
+    fn inner() {
+        return a;
+    }
+    return inner;
+}
+
+fn maker_closure() {
+    fn in(a) {
+        return inner(a);
+    }
+    return in;
+}
+
+var a: InnerFn = maker_closure();
+var b: InnerFn = maker_closure();
+var c: InnerFn = maker_closure();
+var d: InnerFn = maker_closure();
+var e: InnerFn = maker_closure();
+var f: InnerFn = maker_closure();
+print a(100)();
+print b(200)();
+print c(300)();
+print d(400)();
+print e(500)();
+print f(600)();
+

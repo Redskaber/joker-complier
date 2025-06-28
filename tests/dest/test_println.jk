@@ -1,0 +1,77 @@
+//! This file is part of the public API. It is only used in the implementation of
+//! the `println` build-in function.
+
+struct Animal {
+    name: String,
+}
+
+// TODO: impl struct inherit from another struct
+// struct Dog: Animal {
+//     breed: String,
+// }
+struct Dog {
+    animal: Animal,
+    breed: String,
+}
+
+
+class Person {
+    fn init(name: str, age: i32) -> Person {
+        self.name = name;
+        self.age = age;
+    }
+}
+
+class Student: Person {
+    fn init(name: str, age: i32, grade: i32) -> Student {
+        super.init(name, age);
+        self.grade = grade;
+    }
+
+    fn printf() {
+        println("Student {name: %s, age: %d, grade: %d}", self.name, self.age, self.grade);
+    }
+    
+}
+
+class Employee {
+    fn init(name: str, age: i32, salary: f32) -> Employee {
+        struct EmployeeData {
+            name: str,
+            age: i32,
+            salary: f32,
+            amount: Tip,
+        }
+        class Tip {
+            fn init(amount: f32) -> Tip {
+                self.amount = amount;
+            }
+        }
+        self.data = EmployeeData(name, age, salary, Tip(100.0));
+    }
+
+    fn printf() {
+        println("Employee {name: %s, age: %d, salary: %f, tip: %f}", 
+            self.data.name, self.data.age, self.data.salary, self.data.amount.amount);
+    }
+}
+
+
+
+fn main() {
+    println("Hello, world!");
+
+    var animal: Animal = Animal("Dog");
+    println("Animal {name: %s}", animal.name);
+
+    var dog: Dog = Dog(animal, "Labrador");
+    println("Dog {name: %s, breed: %s}", dog.animal.name, dog.breed);
+
+    var student: Student = Student("John", 18, 12);
+    student.printf();
+    
+    var employee: Employee = Employee("Jane", 30, 5000.0);
+    employee.printf();
+}
+
+main();

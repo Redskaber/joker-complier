@@ -1,0 +1,49 @@
+/*
+    this file is used to test the type label feature
+*/
+
+// import std.io;
+
+
+fn sum(a: i32, b: i32) -> i32 {
+    return a + b;
+}
+
+fn call(func, a:i32, b:i32) -> i32 {
+    return func(a, b);
+}
+
+
+fn main(args: i32) -> i32 {
+    var start_clock = clock();
+
+    var a: i32 = 1;
+    var b: i32 = 2;
+    print sum(a, b);
+
+    print clock() - start_clock;
+
+    var fp: Fn(i32, i32) -> i32 = sum;
+    print fp(a, b);
+
+    print date();    
+
+    print call(fp, a, b);
+
+    var flag: bool = true;
+    while(flag) {
+        break;
+        continue;
+        flag = false;
+    }
+
+    match(1) {
+    1 => print 1;
+    _ => print 2;
+    }
+
+    return 0;
+}
+
+
+main(0);

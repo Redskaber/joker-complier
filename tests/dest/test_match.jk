@@ -1,0 +1,79 @@
+//! this file is joker language match case test file.
+
+
+fn test_match_local(){
+    println("test match begin:");
+	var label: i32 = 5;
+    match(label) {
+        1 => println("one"),
+        2 => println("two"),
+        3 => println("three"),
+        7 => println("seven"),
+        _ => println("other"),
+    }
+    println("test match end");
+    println(label);
+
+    return label;
+}
+
+
+fn test_match_const(){
+    println("test match begin:");
+    match(3) {
+        1 => println("one");
+        2 => println("two");
+        3 => println("three");
+        7 => println("seven");
+        _ => println("other");
+    }
+    println("test match end");
+    return None;
+}
+
+
+fn test_match_global(){
+    println("test match begin:");
+    var g_var: i32 = 2;
+    fn inner(){
+        match(g_var) {
+            1 => println("one");
+            2 => println("two");
+            3 => println("three");
+            7 => println("seven");
+            _ => println("other");
+        }
+    }
+    inner();
+    println("test match end");
+    return None;
+}
+
+
+fn test_match_string(){
+    println("test match begin:");
+    match("word") {
+        1 => println("one");
+        2 => println("two");
+        3 => println("three");
+        7 => println("seven");
+        "word" => println("word");
+        _ => println("other");
+    }
+    println("test match end");
+    return None;
+}
+
+
+// test_match_string();
+// test_match_global();
+// test_match_const();
+// test_match_local();
+
+enum Msg {
+    Simple(str),
+    Complex(str, i32),
+}
+
+
+println("hello world");

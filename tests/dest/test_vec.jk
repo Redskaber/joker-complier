@@ -1,0 +1,154 @@
+//! @brief Vector class
+//! This file is used test the vector class.(build in joker language)
+
+fn printVec(arr: Vec<i32>) -> None {
+    for (var i: i32 = 0; i < arr.len(); i = i + 1) {
+        print("%d ", arr[i]);
+    }
+    println("");
+}
+
+fn test_vector_int() -> None {
+        var arr: Vec<i32> = [0,1,2,3,4,5,6,7,8,9];
+    arr.push(100);
+    println("arr: %s", arr);
+    arr.pop();
+    println("arr: %s", arr);
+    arr.insert(0, 100);
+    println("arr: %s", arr);
+    arr.remove(0);
+    println("arr: %s", arr);
+
+    var e:Vec<i32> = [23,34,45];
+    println("e: %s", e);
+    e.extend(arr);
+    println("e: %s", e);
+
+    println("arr: %s", arr);
+    e.clear();
+    println("e: %s", e);
+
+    arr.reverse();
+    println("arr: %s", arr);
+
+    println("arr.first(): %d", arr.first());
+    println("arr.last(): %d", arr.last());
+    println("arr.get(0): %d", arr.get(0));
+    arr.set(1,100);
+    println("arr: %s", arr);
+
+    println("arr.len(): %d", arr.len());
+
+    var arr2: Vec<i32> = [1,2,3,4,5,6,7,8,9];
+    var arr3: Vec<i32> = [1,2,3,4,5,6,7,8,9];
+    println("%d", arr == arr2);
+    println("%d", arr3 == arr2);
+    println("%d", arr == e);
+
+    return None;
+}
+
+fn test_vector_str() -> None {
+    var arr: Vec<str> = ["Hello", "World", "!"];
+    println("arr: %s", arr);
+    arr.push("Joker");
+    println("arr: %s", arr);
+    arr.pop();
+    println("arr: %s", arr);
+    arr.insert(0, "Joker");
+    println("arr: %s", arr);
+    arr.remove(0);
+    println("arr: %s", arr);
+
+    return None;
+}
+
+fn test_vector_generic() -> None {
+    var g_arr: Vec<Any> = [1,2,3,4,5, "Hello", "World", "!"];
+    println("g_arr: %s", g_arr);
+    g_arr.push("Joker");
+    println("g_arr: %s", g_arr);
+    g_arr.pop();
+    println("g_arr: %s", g_arr);
+    g_arr.insert(0, "Joker");
+    println("g_arr: %s", g_arr);
+    g_arr.remove(0);
+    println("g_arr: %s", g_arr);
+    g_arr.reverse();
+    println("g_arr: %s", g_arr);
+    println("g_arr.first(): %s", g_arr.first());
+    println("g_arr.last(): %s", g_arr.last());
+    return None;
+}
+
+
+class TestVec {
+    fn vec_create(init_value: i32, length: i32) -> Vec<i32> {
+        var data: Vec<i32> = [];
+        for (var i: i32 = 0; i < length; i = i + 1) {
+            data.push(init_value);
+        }
+        return data;
+    }
+}
+
+
+fn test() -> None {
+    var f = TestVec::vec_create(0, 10);
+    var d= TestVec::vec_create(0, 10);
+    println("f: %s", f);
+    println("d: %s", d);
+
+    println("%d", f == d);
+    println("add: %s", f + d);
+
+    f[6] = 1000;
+    println("%d", f[6]);
+
+    f[7] = [1,2,3];
+    println("%s", f);
+    println("%s", f[7]);
+
+    return None;
+}
+
+class A {
+    fn test() -> None {
+        println("A::test");
+    }
+}
+
+class B: A {
+    fn test() -> None {
+        super.test();
+        println("B::test");
+    }
+}
+
+
+
+fn sorted(arr: Vec<i32>, handler: Fn) {
+    for(var i: i32 = 0; i < arr.len(); i += 1) {
+        for(var j: i32 = 0; j < arr.len() - 1; j += 1) {
+            if handler(arr[j], arr[j + 1]) {
+                var temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
+
+fn main() -> None {
+    var arr: Vec<i32> = [1,2,3,4,5,6,7,8,9];
+    println("%s", arr);
+    arr.reverse();
+    println("%s", arr);
+    sorted(arr, |a:i32, b:i32| a > b);
+    println("%s", arr);
+
+    return None;
+}
+
+
+main();

@@ -1,0 +1,17 @@
+flowchart TD
+    Start[开始] -->|调用 parse_advance| CheckEOF1{是否到达文件末尾}
+    CheckEOF1 -->|否| GetPrefixRule[获取前缀规则]
+    GetPrefixRule -->|前缀规则为空| Error1[前缀规则为空错误]
+    GetPrefixRule -->|前缀规则不为空| ExecutePrefixRule[执行前缀规则]
+    ExecutePrefixRule --> CheckEOF2{是否到达文件末尾}
+    CheckEOF2 -->|是| End[结束]
+    CheckEOF2 -->|否| WhileLoop{当前token优先级 >= 外部优先级}
+    WhileLoop -->|否| CheckAssignment[检查是否为赋值操作符]
+    WhileLoop -->|是| AdvanceToken[调用 parse_advance]
+    AdvanceToken -->|调用 parse_advance| CheckEOF3{是否到达文件末尾}
+    CheckEOF3 -->|否| GetInfixRule[获取中缀规则]
+    GetInfixRule -->|中缀规则为空| Error2[中缀规则为空错误]
+    GetInfixRule -->|中缀规则不为空| ExecuteInfixRule[执行中缀规则]
+    ExecuteInfixRule --> WhileLoop
+    CheckAssignment -->|是| Error3[赋值操作符错误]
+    CheckAssignment -->|否| End

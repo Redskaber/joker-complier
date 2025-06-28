@@ -1,0 +1,52 @@
+//! This file is used test Joker-language features
+//! test compiled with joker-compiler
+
+fn test(d: i32) {println("d: %d", d);}
+
+fn test() {
+    var a = 10;
+
+    a += 1;
+    println("a: %d", a);
+    a -= 1;
+    println("a: %d", a);
+    a *= 2;
+    println("a: %d", a);
+    a /= 2;
+    println("a: %d", a);
+
+    var b = 1;
+    println("b: %d", b >> 1);
+    println("b: %d", b << 10);
+    println("b: %d", b & 255);
+    println("b: %d", b ^ 255);
+    println("b: %d", b | 255);
+    println("b: %d", b);
+
+    b >>= 1;
+    println("b: %d", b);
+    b <<= 10;
+    println("b: %d", b);
+    b &= 255;
+    println("b: %d", b);
+    b ^= 255;
+    println("b: %d", b);
+    b |= 255;
+    println("b: %d", b);
+
+    var n = 255;        // 1111 1111 => ~ => 0000 0000
+    println("n: %d", ~n);
+
+    var s1 = "hello";
+    var s2 = "world";
+    println("s1 + s2: %s", s1 + s2);    // hello world
+    println("s1 == s2: %d", s1 == s2);  // false
+
+    var d2 = 10;
+    println("-d2: %d", -d2);
+    println("~d2: %d", ~d2);
+
+    return None;
+}
+
+test();

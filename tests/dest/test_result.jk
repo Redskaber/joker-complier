@@ -1,0 +1,10 @@
+//! This file is used test Joker-language features
+//! @author: Kilig
+//! @date: 2025-03-08
+//! @version: 0.0.1
+//! @description: Test Joker-language features
+///
+/// struct Result<T, E> {
+///      Ok(T),
+///      Err(E),
+/// }

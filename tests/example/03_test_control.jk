@@ -1,0 +1,90 @@
+//! This file is used to test Self-language features.
+//! test: Control Flow
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+/// forStmt        → for (varDecl | exprStmt | ; condition ; increment) statement;
+/// whileStmt      → "while" "(" expression ")" statement;
+/// loopStmt       → "loop" statement;
+/// breakStmt      → "break" ";"
+/// continueStmt   → "continue" ";";
+/// blockStmt      → "{" declaration* "}"
+/// returnStmt     → "return" expression? ";"
+/// ifStmt         → "if" "(" expression ")" statement ("else" statement)?
+/// matchStmt      → "match" "(" expression ")" "{"
+///                   (pattern "=>" statement ",")*
+///                   (pattern "=>" statement)
+///                 "}"
+/// pattern        → literal | IDENTIFIER | "_"
+
+
+/// test: whileStmt
+var i = 0;
+while i < 3 {
+    print("%d ", i);
+    i = i + 1;
+} // 预期输出 0 1 2
+println("");
+///////////////////////////////////////////////////
+/// loopStmt + breakStmt
+var j = 0;
+loop {
+    j = j + 1;
+    if j >= 5 {
+        break;
+    }
+} // 最终 j=5
+println("j: %d", j);
+///////////////////////////////////////////////////
+/// test: blockStmt
+var outer = 10;
+{
+    var inner = outer + 5;          // 应能访问外部变量
+    println("outer: %d", inner);    // 15
+}
+println("outer: %d", outer);        // 10
+///////////////////////////////////////////////////
+/// if-else Stmt
+var x = 42;
+if x > 50 {
+    println("large");
+} else if x > 30 { 
+    println("medium");
+} else {
+    println("small");
+}
+/// for 循环
+/// TODO: more params for forStmt
+for (var i = 0; i < 5; i = i + 1) {
+    println("i: %d", i);
+}
+///////////////////////////////////////////////////
+/// test: matchStmt
+var value = 42;
+match (value) {
+    0 => println("zero"),           // 字面量模式
+    42 => println("%d", value),     // 标识符模式（匹配任意值）
+    _ => println("default")         // 通配符模式
+}   // 应输出 42
+
+match ("error") {
+    "ok" => println("success"),
+    _ => println("fallback")        // 应触发默认分支
+}
+///////////////////////////////////////////////////
+/// 验证所有模式匹配分支
+var test_cases:Vec<Any> = [0, 1, "str"];
+for (var i = 0; i < test_cases.len(); i = i + 1) {
+    match (test_cases[i]) {
+        0 => println("zero"),
+        1 => println("one"),
+        _ => println("other: %s", test_cases[i])
+    }
+}
+

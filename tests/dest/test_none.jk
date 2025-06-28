@@ -1,0 +1,7 @@
+//! this file is used to self-language the future language
+
+var none_var: None;
+
+println("%d", none_var == None);
+
+

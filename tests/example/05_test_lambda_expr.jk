@@ -1,0 +1,28 @@
+//! This file is used to test Self-language features.
+//! test: lambda_expr
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+
+/// lambda → "|" (params)? "|" ("->" type)? blockStmt  => rust
+fn main() -> i32 {
+    var a = |x: i32, y: i32| -> i32 { return x + y; };
+    println("a(1, 2) = %d", a(1, 2)); //3
+
+    var b = |x: i32, y: i32| { 
+        var z = |a: i32, b: i32| -> i32 { return a + b; };
+        var w = |a: i32, b: i32| -> i32 { return a - b; };
+        return z(x, w(x, y)); // 1 + (1 - 2)
+    };
+    println("b(1, 2) = %d", b(1, 2));
+    return 0;
+}
+
+
+main();

@@ -1,0 +1,17 @@
+//! This file is Joker language about call and variable ref test.
+
+
+fn test_variable(a: i32) -> None {
+    a = a + 1;
+    println("a: %d", a);
+}
+
+
+fn main() -> None {
+    var a:i32 = 10;
+    test_variable(a);       // copy a
+    println("a: %d", a);
+}
+
+main();
+

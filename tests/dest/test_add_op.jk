@@ -1,0 +1,18 @@
+//! This file is used to test the add_op.jk file
+//! self-language future support
+
+
+var count: i64 = 0;
+var start_time: i64 = clock();
+while count < 100000000 {
+    count += 1;
+}
+var end_time: i64 = clock();
+var dur: f64 = 100000000.0 / (end_time - start_time);
+
+if dur  < 0.000000001 {
+    print("Error: Time is too short");
+} else {
+    print("Time taken: %f, %f per/ns", end_time - start_time, dur);
+}
+print("Count: %d", count);

@@ -1,0 +1,97 @@
+
+fn test_break(){
+    print "test while break begin:";
+    var i: i32 = 10;
+    while(i > 0) {
+        print i;
+        if (i == 7){
+            break;
+        }
+        i = i - 1;
+    }
+    print "test while break end.";
+}
+
+
+fn test_continue(){
+    print "test while continue begin:";
+    var i: i32 = 11;
+    while(i > 0) {
+        i = i - 1;
+        if (i == 7){
+            continue;
+        }
+        print i;
+    }
+    print "test while continue end.";
+}
+
+
+fn test_break_and_continue(){
+    print "test while break and continue begin:";
+    var i: i32 = 11;
+    while(i > 0) {
+        i = i - 1;
+        if (i == 7){
+            continue;
+        }
+        print i;
+        if (i == 5){
+            break;
+        }
+    }
+    print "test while break and continue end.";
+}
+
+
+fn test_in_while(){
+    test_break();
+    test_continue();
+    test_break_and_continue();
+}
+
+
+//////////////////////////////////////////////////////////////////////
+fn test_for_break(){
+    print "test for break begin:";
+    for(var i = 1; i < 10; i = i + 1) {
+        print i;
+        if (i == 3) {
+            break;
+            }
+    }
+    print "test for break end.";
+}
+
+fn test_for_continue(){
+    print "test for continue begin:";
+    for(var i = 1; i < 10; i = i + 1) {
+        if (i == 3){
+            continue;
+        }
+        print i;
+    }
+    print "test for continue end.";
+}
+
+fn test_for_break_and_continue(){
+    print "test for break and continue begin:";
+    for(var i = 1; i < 10; i = i + 1) {
+        if (i == 3){
+            continue;
+        } else if (i == 7) {
+            break;
+        } else {
+            print i;
+        }
+    }
+    print "test for break and continue end.";
+}
+
+fn test_in_for() {
+    test_for_break();
+    test_for_continue();
+    test_for_break_and_continue();
+}
+
+test_in_for();

@@ -1,0 +1,38 @@
+//! This file is joker-language-specific
+//! This is a test file for the joker print keyword output in the joker language
+
+enum Sex {
+    Male,
+    Female   
+}
+
+struct Person {
+    name: str,
+    age: i32
+}
+
+struct Male: Person {
+    sex: Sex::Male
+}
+
+struct Female: Person {
+    sex: Sex::Female
+}
+
+
+var p = Person("Tom", 23);
+println("Person:{name: %s, age: %d}", p.name, p.age);   // Person:{name: Tom, age: 23}
+println("%s", p);       // <struct Person>
+
+var a: i32 = 10;
+var b: f32 = 3.14000;
+var d: str = "hello";
+var e: bool = true;
+var g: Person = Person("Tom", 23);
+
+println("a: %d", a);
+println("b: %f", b);
+println("d: %s", d);
+println("e: %t", e);
+println("g: %s", g);
+

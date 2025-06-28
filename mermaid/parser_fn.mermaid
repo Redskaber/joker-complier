@@ -1,0 +1,29 @@
+flowchart TD
+    Start[开始]
+    Start --> ParseFnName[解析函数名]
+    ParseFnName --> MarkInitialized[标记编译器已初始化]
+    MarkInitialized --> ParseFunction[调用 parse_function 解析函数体]
+    ParseFunction --> DefineVariable[定义并初始化函数变量]
+    DefineVariable --> End[结束]
+
+    subgraph ParseFunction
+        EnterSubCompiler[进入子编译器]
+        EnterSubCompiler --> BeginScope[开始新作用域]
+        BeginScope --> ParseLeftParen[解析左括号]
+        ParseLeftParen --> CheckRightParen[检查右括号]
+        CheckRightParen -->|是| ParseReturnType[解析返回类型]
+        CheckRightParen -->|否| ParseParameters[解析参数列表]
+        ParseParameters --> CheckMaxParams[检查参数数量是否超过256]
+        CheckMaxParams -->|是| Error[报错并返回]
+        CheckMaxParams -->|否| DefineParameter[定义参数]
+        DefineParameter --> CheckComma[检查逗号]
+        CheckComma -->|是| ParseParameters
+        CheckComma -->|否| ParseRightParen[解析右括号]
+        ParseRightParen --> ParseReturnType
+        ParseReturnType --> ParseLeftBrace[解析左大括号]
+        ParseLeftBrace --> ParseBlockStatement[解析函数体]
+        ParseBlockStatement --> GenerateFunctionObject[生成函数对象]
+        GenerateFunctionObject --> EmitDefineInstruction[发出定义指令]
+        EmitDefineInstruction --> PushUpValues[推送函数上值]
+        PushUpValues --> FreeSubCompiler[释放子编译器资源]
+    end

@@ -1,0 +1,8 @@
+flowchart TD
+    A[开始] --> B{upvalue数量是否达到127?}
+    B -->|是| C[报错并返回0]
+    B -->|否| D[遍历已有的upvalue列表]
+    D --> E{找到相同的upvalue?}
+    E -->|是| F[返回upvalue索引]
+    E -->|否| G[添加新的upvalue]
+    G --> H[返回新的upvalue索引]

@@ -1,0 +1,30 @@
+//! This file is used to test Self-language features.
+//! test: var_decl
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+
+/// @test: var_decl      → "var" IDENTIFIER (":" type)? ("=" expression)? ";"
+///         literal       → NUMBER | STRING | "true" | "false" | "None"
+///////////////////////////////////////////////////
+var i32_var: i32 = 0;
+var f32_var: f32 = 0.0;
+var str_var: str = "Hello, World!";
+var bool_var: bool = true;
+var none_var: None = None;
+
+println("i32_var: %d", i32_var);
+println("f32_var: %f", f32_var);
+println("str_var: %s", str_var);
+println("bool_var: %d", bool_var)
+println("none_var: %s", none_var)
+///////////////////////////////////////////////////
+
+
+

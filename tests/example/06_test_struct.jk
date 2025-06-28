@@ -1,0 +1,35 @@
+
+//! This file is used to test Self-language features.
+//! test: struct_decl
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+
+
+/// struct_decl    → "struct" IDENTIFIER (":" IDENTIFIER)? "{"
+///                   (member ("," member)* ","?)?
+///                  "}"
+/// member         → IDENTIFIER ":" type
+
+
+struct Point {
+    x: i32,
+    y: i32
+}
+
+var p = Point(1, 2);  // 按位置
+println("Point(%d, %d)", p.x, p.y);
+
+struct NamedPoint: Point {
+    name: str
+}
+
+var np = NamedPoint(10, 20, "redskaber"); // 按位置传参
+println("NamedPoint(%d, %d, %s)", np.x, np.y, np.name);
+

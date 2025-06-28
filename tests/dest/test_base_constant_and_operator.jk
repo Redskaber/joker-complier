@@ -1,0 +1,55 @@
+STATIC_CONST = 100;
+
+const CAP_CONST = 100;
+const Low_CONST = 200;
+
+var i8_var = 100i8;
+var i16_var = 100i16;
+var i32_var = 100i32;
+var i64_var = 100i64;
+var i128_var = 100i128;
+var isize_var = 100isize;
+
+var u8_var = 100u8;
+var u16_var = 100u16;
+var u32_var = 100u32;
+var u64_var = 100u64;
+var u128_var = 100u128;
+var usize_var = 100usize;
+
+var f32_var = 100f32;
+var f64_var = 100f64;
+var fe_var = 10e2;
+var fE_var = 10E2;
+var fp_var = 10E2i32;
+var fp_var = 10E2f64;
+
+var hex_var = 0xff;
+var Hex_var = 0xFF;
+var hex_var_1 = 0xFF_FFi8;
+var hex_var_2 = 0xFF_FFi16;
+var hex_var_3 = 0xFF_FFi32;
+var hex_var_4 = 0xFF_FFi64;
+var hex_var_5 = 0xFF_FFi128;
+var hex_var_6 = 0xFF_FFisize;
+
+var Hex_var_1 = 0xFF_FFu8;
+var Hex_var_2 = 0xFF_FFu16;
+var Hex_var_3 = 0xFF_FFu32;
+var Hex_var_4 = 0xFF_FFu64;
+var Hex_var_5 = 0xFF_FFu128;
+var Hex_var_6 = 0xFF_FFusize;
+
+var oct_var = 0o77;
+var Oct_var = 0o77;
+var oct_var_1 = 0o77_77i8;
+var oct_var_2 = 0o77_77i16;
+var oct_var_3 = 0o77_77i32;
+var oct_var_4 = 0o77_77i64;
+var oct_var_5 = 0o77_77i128;
+var oct_var_6 = 0o77_77isize;
+
+var bin_var = 0b1111_1111;
+var Bin_var = 0b1111_1111i64;
+
+var bool_var = true | false;

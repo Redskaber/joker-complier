@@ -1,0 +1,44 @@
+
+fn test_loop() {
+    var i = 0;
+    print "start";
+    var start_clock: f64 = clock();
+    loop {
+        if (i > 100000000) {
+            break;
+        }
+        i = i + 1; 
+    }
+    print clock() - start_clock;
+    print "done";
+}
+
+fn test_while() {
+    var i = 0;
+    print "start";
+    var start_clock: f64 = clock();    
+    while(i < 100000000) {
+        i = i + 1;
+    }
+    print clock() - start_clock;
+    print "done";
+}
+
+fn test_for() {
+    print "start";
+    var start_clock: f64 = clock();
+    for (var i = 0; i < 100000000; i = i + 1) {}
+    print clock() - start_clock;
+    print "done";
+}
+fn print_clock() {
+    print clock();
+}
+fn test_loop2() {
+    loop print_clock();     // dead loop
+}
+
+test_loop2();
+// test_while();            // 3.006000         
+// test_loop();             // 3.051000     v2% 
+// test_for();              // 3.225000     v7%

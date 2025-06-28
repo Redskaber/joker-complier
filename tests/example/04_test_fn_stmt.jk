@@ -1,0 +1,51 @@
+//! This file is used to test Self-language features.
+//! test: FnStmt
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+
+/// fn_decl        → "fn" IDENTIFIER "(" (params)? ")" ("->" type)? blockStmt
+/// params         → IDENTIFIER ":" type ("," IDENTIFIER ":" type)*
+
+fn sum(a:i32, b:i32) -> i32 {
+    return a + b;
+}
+
+fn div(a:i32, b:i32) -> i32 {
+    if b == 0 {
+        return 0;
+    }
+    return a / b;
+}
+
+// 封装
+fn wrapper() -> Fn {
+    fn inner(a:i32, b:i32) -> i32 {
+        return sum(a, b);
+    }
+    return inner;
+}
+
+// 高级函数
+fn call(caller:Fn, a:i32, b:i32) -> i32 {
+    println("call(%d, %d): %d", a, b, caller(a, b));
+}
+
+
+fn main() -> i32 {
+    println("sum(1,2): %d", sum(1, 2)); // 3
+    println("div(1,2): %d", div(1, 2)); // 0 
+    println("wrapper()(1, 2): %d",  wrapper()(1, 2)); // 3
+    call(sum, 1, 2);
+    return 0;
+}
+
+
+main();
+

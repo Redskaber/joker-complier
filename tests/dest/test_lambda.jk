@@ -1,0 +1,19 @@
+//! Tests for the lambda expression.
+//! This file is use test Joker-language features.
+
+var sum: Fn(i32, i32)->i32 = |a: i32, b:i32| a + b;
+var b = 3;
+var outer: Fn(i32)->i32 = |a: i32| a + b; // outer is a closure; b is captured = 3.
+
+fn main() {
+    var b = 20;
+    println("sum: %d", sum(1, 2));
+    println("outer: %d", outer(10));    // 13
+
+    var loc: Fn(i32)->i32 = |a: i32| a + b;
+    println("loc: %d", loc(10));        // 30
+    return 0;
+}
+
+main();
+

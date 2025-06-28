@@ -1,0 +1,65 @@
+///  Context-Free Grammar: (上下文无关语法)
+///
+/// program        → declaration* EOF
+///
+/// declaration    → class_decl | struct_decl | enum_decl | fn_decl | var_decl
+///
+/// class_decl     → "class" IDENTIFIER (":" IDENTIFIER)? "{"
+///                   (class_decl | struct_decl | fn_decl | var_decl)*
+///                  "}"
+///
+/// struct_decl    → "struct" IDENTIFIER (":" IDENTIFIER)? "{"
+///                   (member ("," member)* ","?)?
+///                  "}"
+/// member         → IDENTIFIER ":" type
+///
+/// enum_decl      → "enum" IDENTIFIER "{"
+///                   (IDENTIFIER ("(" type ("," type)* ")")?
+///                   ("," IDENTIFIER ("(" type ("," type)* ")")? )*
+///                 "}"
+///
+/// fn_decl        → "fn" IDENTIFIER "(" (params)? ")" ("->" type)? blockStmt
+/// params         → IDENTIFIER ":" type ("," IDENTIFIER ":" type)*
+///
+/// var_decl       → "var" IDENTIFIER (":" type)? ("=" expression)? ";"
+///
+/// statement      → exprStmt | returnStmt | breakStmt | continueStmt
+///                 | matchStmt | ifStmt | printStmt | whileStmt | forStmt
+///                 | loopStmt | blockStmt
+///
+/// forStmt        → for (varDecl | exprStmt | ; condition ; increment) statement;
+/// whileStmt      → "while" "(" expression ")" statement;
+/// loopStmt       → "loop" statement;
+/// breakStmt      → "break" ";"
+/// continueStmt   → "continue" ";";
+/// blockStmt      → "{" declaration* "}"
+/// returnStmt     → "return" expression? ";"
+///
+/// exprStmt       → expression ";"
+/// printStmt      → "print" expression ";"
+/// ifStmt         → "if" "(" expression ")" statement ("else" statement)?
+/// matchStmt      → "match" "(" expression ")" "{"
+///                   (pattern "=>" statement ",")*
+///                   (pattern "=>" statement)
+///                 "}"
+/// pattern        → literal | IDENTIFIER | "_"
+///
+/// expression     → ternary
+/// ternary        → logic_or ("?" expression ":" expression)?
+/// logic_or       → logic_and ("or" logic_and)*
+/// logic_and      → equality ("and" equality)*
+/// equality       → comparison (("==" | "!=") comparison)*
+/// comparison     → term ((">" | ">=" | "<" | "<=") term)*
+/// term           → factor (("+" | "-") factor)*
+/// factor         → unary (("*" | "/") unary)*
+/// unary          → ("!" | "-") unary | call
+/// call           → primary ("(" arguments? ")" | "." IDENTIFIER)*
+/// arguments      → expression ("," expression)*
+/// primary        → literal | IDENTIFIER | "(" expression ")" | lambda
+/// lambda         → "|" (params)? "|" ("->" type)? blockStmt
+///
+/// literal        → NUMBER | STRING | "true" | "false" | "None"
+/// type           → IDENTIFIER | "i8" | "u8" | "i16"|"u16"|"i32"|"u32"|"i64" | "f64"| "usize"|“isize”| "string"
+
+
+

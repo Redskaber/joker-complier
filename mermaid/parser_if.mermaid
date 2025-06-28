@@ -1,0 +1,17 @@
+flowchart TD
+    A[开始] --> B{解析左括号}
+    B -->|Yes| C[解析表达式]
+    C --> D{解析右括号}
+    D -->|Yes| E[生成跳转指令 op_jump_if_false]
+    E --> F[记录跳转位置 then_jump]
+    F --> G[生成 op_pop 指令]
+    G --> H[解析 then 分支]
+    H --> I[生成跳转指令 op_jump]
+    I --> J[记录跳转位置 else_jump]
+    J --> K[修补 then_jump 跳转指令]
+    K --> L[生成 op_pop 指令]
+    L --> M{存在 else 关键字?}
+    M -->|Yes| N[解析 else 分支]
+    N --> O[修补 else_jump 跳转指令]
+    M -->|No| O[修补 else_jump 跳转指令]
+    O --> P[结束]

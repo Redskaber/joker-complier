@@ -1,0 +1,54 @@
+//! This file is used to test Self-language features.
+//! test: expression
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+
+/// logic_or       → logic_and ("or" logic_and)*
+/// logic_and      → equality ("and" equality)*
+/// equality       → comparison (("==" | "!=") comparison)*
+/// comparison     → term ((">" | ">=" | "<" | "<=") term)*
+/// term           → factor (("+" | "-") factor)*
+/// factor         → unary (("*" | "/") unary)*
+/// unary          → ("!" | "-") unary | call
+
+
+var a:i32 = 2 * (3 + 4) - 5 / 1;       // 2*7-5 = 9
+
+var b:bool = false and true;
+var c:bool = true or false;
+var d:bool = !false;
+var e:bool = 1 > 2;
+var f:i32 = 5;
+var g:bool = (f > 3) and (f <=5);
+var h:bool = (f == 5) or (f != 5);
+var i:bool = !(2 + 3 * 4 >= 15) and (true != false);
+
+// var j:Error = 10 / (5 - 5);       // Division by zero 
+// var i32_max:i32 = 2147483647 + 1; // i32 overflow in operation
+var i64_var:i64 = -2147483648 * 2;   // up type to i64
+
+
+var v1:i32 = 2 + 3 * 4;                   // 14
+var v2:bool = true or false and false;    // true
+// var e:Error "hello" + 1024;
+
+// output
+println("a = %d", a);
+println("b = %d", b);
+println("c = %d", c);
+println("d = %d", d);
+println("e = %d", e);
+println("g = %d", g);
+println("h = %d", h);
+println("i = %d", i);
+println("i64_var = %d", i64_var);
+println("v1 = %d", v1);
+println("v2 = %d", v2);
+

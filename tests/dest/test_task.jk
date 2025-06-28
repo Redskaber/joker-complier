@@ -1,0 +1,23 @@
+
+fn main() {
+    class A {
+        fn init(a, b) {
+            self.a = a;
+            self.b = b;
+        }
+    }
+    
+    class B(A) {
+        fn init(a, b, c) {
+            super.init(a, b);
+            self.c = c;
+        }
+    }
+
+    var b = B(1, 2, 3);
+    print(b.a);
+
+    return null;
+}
+
+main();

@@ -1,0 +1,7 @@
+//! This file is used test Joker-language Option type.
+
+/// Option type.
+/// struct Option<T> {
+///     Some: T,
+///     None
+/// }

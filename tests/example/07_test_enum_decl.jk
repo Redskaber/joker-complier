@@ -1,0 +1,52 @@
+
+//! This file is used to test Self-language features.
+//! test: enum_decl
+/*
+ * @author: redskaber
+ * @date: 2025-05-05
+ * @version: 1.0.0
+ * @description: This file is used to test Self-language features.
+ * @copyright: Copyright (c) 2025
+ * @license: MIT
+ */
+
+
+/// enum_decl      → "enum" IDENTIFIER "{"
+///                   (IDENTIFIER ("(" type ("," type)* ")")?
+///                   ("," IDENTIFIER ("(" type ("," type)* ")")? )*
+///                 "}"
+
+
+enum Color {
+    RED,
+    GREEN,
+    BLUE
+}
+
+println("%s", Color::RED);  // :: 层级
+match Color::RED {
+    Color::RED => println("Red"),
+    Color::GREEN => println("Green"),
+    Color::BLUE => println("Blue")
+}
+
+
+enum  Shape {
+    Circle(Color),
+    Rectangle(Color, Color),
+    Triangle(Color, Color, Color)
+}
+
+var shape = Shape::Circle(Color::RED);
+println("%s", shape);
+match shape {
+    Shape::Circle(c) => match c {
+        Color::RED => println("Circle is red"),
+        Color::GREEN => println("Circle is green"),
+        Color::BLUE => println("Circle is blue")
+    },
+    Shape::Rectangle(c1, c2) => println("Rectangle is red and green"),
+}
+
+
+

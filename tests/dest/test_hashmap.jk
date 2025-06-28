@@ -1,0 +1,44 @@
+
+struct HashMap<K, V, Hasher> {
+    key: K,
+    value: V,
+    hasher: Hasher 
+}
+
+impl <K, V, Hasher> HashMap<K, V, Hasher> {
+    fn insert(key: K, value: V) {
+        // ...
+    }
+
+    fn get(key: K) -> V {
+        // ...
+    }
+
+    fn remove(key: K) {
+        // ...
+    }
+
+    fn set(key: K, value: V) {
+        // ...
+    }
+}
+
+
+var map: HashMap<str, i32> = HashMap();
+map.insert("a", 1);
+map.insert("b", 2);
+map.insert("c", 3);
+
+map.set("a", 2);
+map.get("a");
+map.remove("b");
+
+
+var map: HashMap<str, i32> = {
+    "a": 1,
+    "b": 2,
+    "c": 3
+}
+map["d"] = 4
+map["a"]
+map.remove("b");

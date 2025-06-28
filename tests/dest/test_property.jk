@@ -1,0 +1,56 @@
+//! This file is used to test the property of the JK library.
+/*
+ * Copyright (c) 2025-present, the jk-utils authors.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Created on: 2025/02/03
+ */
+class TestProperty {
+    fn init(v: i32) {
+        self.v = v;
+    }
+    fn vec_create(v: i32, length: i32) -> Vec<i32> {
+        var vec:Vec<i32> = [];
+        for(var i = 0; i < length; i = i + 1) {
+            vec.push(v);
+        }
+        return vec;
+    }
+}
+
+fn main() {
+
+    // instance property
+    var v = TestProperty(1);
+    println("%s", v.v);     // test: op_get_property
+    v.v = 2;                // test: op_set_property
+    println("%s", v.v);
+
+    // struct property
+    struct TestStruct {
+        name: str,
+        age: i32
+    }
+    var ts = TestStruct("test", 1);
+    println("%s", ts.name);     // test: op_get_property
+    println("%s", ts.age);
+    ts.name = "test2";          // test: op_set_property
+    println("%s", ts.name);
+
+
+    // class static property through "className::FnName"
+    var v2 = TestProperty::vec_create(10, 10);   // test: op_layer_get_property
+    println("v2 = %s", v2);
+
+    v2[5] = 100;
+    println("v2 = %s", v2);
+
+    println("v2[5]: %d", v2[5]);
+
+    return None;
+}
+
+main();
+
